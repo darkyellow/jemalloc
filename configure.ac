@@ -142,13 +142,13 @@ if test "x$CFLAGS" = "x" ; then
     JE_CFLAGS_APPEND([-Werror=declaration-after-statement])
     JE_CFLAGS_APPEND([-Wshorten-64-to-32])
     JE_CFLAGS_APPEND([-pipe])
-    JE_CFLAGS_APPEND([-g3])
+    dnl JE_CFLAGS_APPEND([-g3])
   elif test "x$je_cv_msvc" = "xyes" ; then
     CC="$CC -nologo"
-    JE_CFLAGS_APPEND([-Zi])
+    dnl JE_CFLAGS_APPEND([-Zi])
     JE_CFLAGS_APPEND([-MT])
     JE_CFLAGS_APPEND([-W3])
-    JE_CFLAGS_APPEND([-FS])
+    dnl JE_CFLAGS_APPEND([-FS])
     CPPFLAGS="$CPPFLAGS -I${srcdir}/include/msvc_compat"
   fi
 fi
@@ -376,7 +376,8 @@ case "${host}" in
 	if test "x$je_cv_msvc" = "xyes" ; then
 	  importlib="lib"
 	  DSO_LDFLAGS="-LD"
-	  EXTRA_LDFLAGS="-link -DEBUG"
+	  dnl EXTRA_LDFLAGS="-link -DEBUG"
+	  EXTRA_LDFLAGS="-link"
 	  CTARGET='-Fo$@'
 	  LDTARGET='-Fe$@'
 	  AR='lib'
