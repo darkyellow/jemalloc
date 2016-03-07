@@ -9,4 +9,4 @@ script:
 - make
 - cd lib
 - ls -alrt
-- file libjemalloc.so
+- file libjemalloc.so.2
