@@ -1,15 +1,12 @@
 sudo: true
 env:
 language: c
-compiler: /usr/bin/arm-linux-gnueabihf-gcc
+compiler: /usr/bin/i586-mingw32msvc-gcc
 before_install:
 - export PATH=$PATH:$HOME/.local/bin
-- sudo apt-get install libc6-armel-cross libc6-dev-armel-cross
-- sudo apt-get install binutils-arm-linux-gnueabi
-- sudo apt-get install libncurses5-dev
-- sudo apt-get install gcc-arm-linux-gnueabihf
+- sudo apt-get install mingw32
 script:
-- ./autogen.sh --with-jemalloc-prefix=je_ --with-malloc-conf=purge:decay --host=arm-linux-gnueabihf
+- ./autogen.sh --with-jemalloc-prefix=je_ --with-malloc-conf=purge:decay --host=mingw32
 - make
 - cd lib
 - ls -alrt
