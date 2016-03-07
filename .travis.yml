@@ -5,5 +5,5 @@ compiler: gcc
 before_install:
 - export PATH=$PATH:$HOME/.local/bin
 script:
-- ./autogen.sh --with-jemalloc-prefix=je_ --with-malloc-conf=purge:decay --host=arm-wrs-linux-gnueabi --with-sysroot=$DISTRO/arm-wr6
+- ./autogen.sh --with-jemalloc-prefix=je_ --with-malloc-conf=purge:decay --host=arm-wrs-linux-gnueabi
 - make
