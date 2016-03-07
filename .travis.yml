@@ -1,7 +1,7 @@
 sudo: true
 env:
 language: c
-compiler: arm-linux-gnueabi-gcc
+compiler: arm-linux-gnueabihf-gcc
 before_install:
 - export PATH=$PATH:$HOME/.local/bin
 - sudo apt-get install libc6-armel-cross libc6-dev-armel-cross
