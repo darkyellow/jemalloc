@@ -10,5 +10,5 @@ script:
 - make
 - cd lib
 - ls -alrt
-- file libjemalloc.so.2
+- file libjemalloc.dll
  
