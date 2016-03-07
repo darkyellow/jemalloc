@@ -11,3 +11,4 @@ script:
 - cd lib
 - ls -alrt
 - file libjemalloc.so.2
+ 
