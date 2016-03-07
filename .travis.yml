@@ -4,6 +4,9 @@ language: c
 compiler: arm-linux-gnueabi-gcc
 before_install:
 - export PATH=$PATH:$HOME/.local/bin
+- sudo apt-get install libc6-armel-cross libc6-dev-armel-cross
+- sudo apt-get install binutils-arm-linux-gnueabi
+- sudo apt-get install libncurses5-dev
 - sudo apt-get install gcc-arm-linux-gnueabihf
 script:
 - ./autogen.sh --with-jemalloc-prefix=je_ --with-malloc-conf=purge:decay
