@@ -1,14 +1,13 @@
 sudo: true
 env:
 language: c
-compiler: /usr/bin/arm-linux-androideabi-gcc
+compiler: arm-linux-androideabi-gcc
 before_install:
 - export PATH=$PATH:$HOME/.local/bin
-- sudo apt-get install libc6-armel-cross libc6-dev-armel-cross
-- sudo apt-get install binutils-arm-linux-gnueabi
-- sudo apt-get install libncurses5-dev
-- sudo uname -a
-- sudo apt-get install gcc-arm-linux-androideabi
+- if [ `uname -m` = x86_64]; then wget http://dl.google.com/android/ndk/android-ndk-r9c-linux-x86_64.tar.bz2 -O ndk.tgz; else wget http://dl.google.com/android/ndk/android-ndk-r9c-linux-x86.tar.bz2 -O ndk.tgz; fi
+- tar -xf ndk.tgz
+- export ANDROID_NDK_HOME=`pwd`/android-ndk-r9c
+- export PATH=${PATH}:${ANDROID_HOME}/tools:${ANDROID_HOME}/platform-tools:${ANDROID_NDK_HOME}
 script:
 - ./autogen.sh --with-jemalloc-prefix=je_ --with-malloc-conf=purge:decay --host=arm-linux-androideabi
 - make
