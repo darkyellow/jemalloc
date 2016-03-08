@@ -1,17 +1,18 @@
 sudo: true
 env:
 language: c
-compiler: arm-linux-androideabi-gcc
+compiler: arm-linux-androideabi-4.9
 before_install:
 - export PATH=$PATH:$HOME/.local/bin
-- export ANDROID_NDK_VERSION=r9c
+- export ANDROID_NDK_VERSION=r10e
 - echo $ANDROID_NDK_VERSION
-- if [ `uname -m` = x86_64 ]; then wget http://dl.google.com/android/ndk/android-ndk-$ANDROID_NDK_VERSION-linux-x86_64.tar.bz2 -O ndk.tgz; else wget http://dl.google.com/android/ndk/android-ndk-$ANDROID_NDK_VERSION-linux-x86.tar.bz2 -O ndk.tgz; fi
-- tar -xf ndk.tgz
+- if [ `uname -m` = x86_64 ]; then wget http://dl.google.com/android/ndk/android-ndk-$ANDROID_NDK_VERSION-linux-x86_64.bin -O ndk.bin; else wget http://dl.google.com/android/ndk/android-ndk-$ANDROID_NDK_VERSION-linux-x86.bin -O ndk.bin; fi
+- chmod a+x ndk.bin
+- ./ndk.bin
 - export ANDROID_NDK_HOME=`pwd`/android-ndk-$ANDROID_NDK_VERSION
-- export $ANDROID_HOME/tools:$ANDROID_HOME/platform-tools:$ANDROID_NDK_HOME:PATH=${PATH}
+- export PATH=$ANDROID_HOME/build/tools:$ANDROID_HOME/toolchains:$ANDROID_NDK_HOME:$PATH
 script:
-- ./autogen.sh --with-jemalloc-prefix=je_ --with-malloc-conf=purge:decay --host=arm-linux-androideabi
+- ./autogen.sh --with-jemalloc-prefix=je_ --with-malloc-conf=purge:decay --host=arm-linux-androideabi-4.9
 - make
 - cd lib
 - ls -alrt
