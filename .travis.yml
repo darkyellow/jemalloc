@@ -5,14 +5,15 @@ compiler: arm-linux-androideabi-gcc
 before_install:
 - export PATH=$PATH:$HOME/.local/bin
 - export ANDROID_NDK_VERSION=r9c
-- if [ `uname -m` = x86_64]; then wget http://dl.google.com/android/ndk/android-ndk-$(ANDROID_NDK_VERSION)-linux-x86_64.tar.bz2 -O ndk.tgz; else wget http://dl.google.com/android/ndk/android-ndk-$(ANDROID_NDK_VERSION)-linux-x86.tar.bz2 -O ndk.tgz; fi
+- echo $ANDROID_NDK_VERSION
+- if [ `uname -m` = x86_64]; then wget http://dl.google.com/android/ndk/android-ndk-$ANDROID_NDK_VERSION-linux-x86_64.tar.bz2 -O ndk.tgz; else wget http://dl.google.com/android/ndk/android-ndk-$ANDROID_NDK_VERSION-linux-x86.tar.bz2 -O ndk.tgz; fi
 - tar -xf ndk.tgz
-- export ANDROID_NDK_HOME=`pwd`/android-ndk-$(ANDROID_NDK_VERSION)
-- ls -alrt $(ANDROID_NDK_HOME);
-- ls -alrt $(ANDROID_NDK_HOME)/lib;
-- export PATH=${PATH}:${ANDROID_HOME}/tools:${ANDROID_HOME}/platform-tools:${ANDROID_NDK_HOME}
-- export LIBRARY_PATH=$(ANDROID_NDK_HOME)/lib:$LIBRARY_PATH
-- export LD_LIBRARY_PATH=$(ANDROID_NDK_HOME)/lib:$LD_LIBRARY_PATH
+- export ANDROID_NDK_HOME=`pwd`/android-ndk-$ANDROID_NDK_VERSION
+- ls -alrt $ANDROID_NDK_HOME;
+- ls -alrt $ANDROID_NDK_HOME/lib;
+- export $ANDROID_HOME/tools:$ANDROID_HOME/platform-tools:$ANDROID_NDK_HOME:PATH=${PATH}
+- export LIBRARY_PATH=$ANDROID_NDK_HOME/lib:$LIBRARY_PATH
+- export LD_LIBRARY_PATH=$ANDROID_NDK_HOME/lib:$LD_LIBRARY_PATH
 script:
 - ./autogen.sh --with-jemalloc-prefix=je_ --with-malloc-conf=purge:decay --host=arm-linux-androideabi
 - make
