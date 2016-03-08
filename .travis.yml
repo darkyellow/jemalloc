@@ -10,7 +10,7 @@ before_install:
 - chmod a+x ndk.bin
 - ./ndk.bin >extract.txt
 - export ANDROID_NDK_HOME=`pwd`/android-ndk-$ANDROID_NDK_VERSION
-- export PATH=$ANDROID_HOME/build/tools:$ANDROID_HOME/toolchains:$ANDROID_NDK_HOME:$PATH
+- export PATH=$ANDROID_NDK_HOME/build/tools:$ANDROID_NDK_HOME/toolchains:$ANDROID_NDK_HOME:$PATH
 script:
 - ./autogen.sh --with-jemalloc-prefix=je_ --with-malloc-conf=purge:decay --host=arm-linux-androideabi-4.9
 - make
