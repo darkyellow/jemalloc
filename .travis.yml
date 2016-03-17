@@ -5,19 +5,13 @@ compiler: arm-linux-androideabi-cpp
 before_install:
 - export PATH=$PATH:$HOME/.local/bin
 - export ANDROID_NDK_VERSION=r10e
+- export ANDROID_TOOLCHAIN=arm-linux-androideabi-4.9
 - echo $ANDROID_NDK_VERSION
 - if [ `uname -m` = x86_64 ]; then wget http://dl.google.com/android/ndk/android-ndk-$ANDROID_NDK_VERSION-linux-x86_64.bin -O ndk.bin; else wget http://dl.google.com/android/ndk/android-ndk-$ANDROID_NDK_VERSION-linux-x86.bin -O ndk.bin; fi
 - chmod a+x ndk.bin
 - ./ndk.bin >extract.txt
 - export ANDROID_NDK_HOME=`pwd`/android-ndk-$ANDROID_NDK_VERSION
-- export PATH=$ANDROID_NDK_HOME/toolchains/arm-linux-androideabi-4.9/prebuilt/linux-`uname -m`/bin:$ANDROID_NDK_HOME:$PATH
-- export LIBRARY_PATH=$ANDROID_NDK_HOME/toolchains/arm-linux-androideabi-4.9/prebuilt/linux-`uname -m`/lib:$ANDROID_NDK_HOME:$LIBRARY_PATH
-- export LD_LIBRARY_PATH=$ANDROID_NDK_HOME/toolchains/arm-linux-androideabi-4.9/prebuilt/linux-`uname -m`/lib:$ANDROID_NDK_HOME:$LD_LIBRARY_PATH
-- export LOCAL_LDLIBS=-L$ANDROID_NDK_HOME/toolchains/arm-linux-androideabi-4.9/prebuilt/linux-`uname -m`/lib:$ANDROID_NDK_HOME:$LOCAL_LDLIBS
-- export CC=$ANDROID_NDK_HOME/toolchains/arm-linux-androideabi-4.9/prebuilt/linux-`uname -m`/bin/arm-linux-androideabi-gcc
-- export CROSS_COMPILER=$ANDROID_NDK_HOME/toolchains/arm-linux-androideabi-4.9/prebuilt/linux-`uname -m`/bin/
-- export CROSS_COMPILE=arm-linux-androideabi
-- export CC_FOR_TARGET=arm-linux-androideabi-gcc
+- $ANDROID_NDK_HOME/build/tools/make-standalone-toolchain.sh --toolchain=$ANDROID_TOOLCHAIN
 script:
 - ./autogen.sh --with-jemalloc-prefix=je_ --with-malloc-conf=purge:decay --host=arm-linux-androideabi
 - cat config.log
