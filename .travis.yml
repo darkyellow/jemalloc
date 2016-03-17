@@ -4,7 +4,7 @@ language: c
 compiler: arm-linux-androideabi-cpp
 before_install:
 - export PATH=$PATH:$HOME/.local/bin
-- export ANDROID_NDK_VERSION=r10e
+- export ANDROID_NDK_VERSION=r11b
 - export ANDROID_TOOLCHAIN=arm-linux-androideabi-4.9
 - export NDK_PLATFORM=android-9
 - echo $ANDROID_NDK_VERSION
