@@ -18,6 +18,7 @@ before_install:
 - export LD_LIBRARY_PATH=$ANDROID_NDK_HOME/toolchains/arm-linux-androideabi-4.9/prebuilt/linux-`uname -m`\lib:$ANDROID_NDK_HOME:$LD_LIBRARY_PATH
 script:
 - ./autogen.sh --with-jemalloc-prefix=je_ --with-malloc-conf=purge:decay --host=arm-linux-androideabi
+- more config.log
 - make
 - cd lib
 - ls -alrt
