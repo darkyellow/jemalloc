@@ -1,7 +1,7 @@
 sudo: true
 env:
 language: c
-compiler: arm-linux-androideabi-cpp
+compiler: arm-linux-androideabi-gcc
 before_install:
 - export PATH=$PATH:$HOME/.local/bin
 - export ANDROID_NDK_VERSION=r10e
