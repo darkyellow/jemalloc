@@ -1,7 +1,6 @@
 sudo: true
 env:
 language: c
-compiler: arm-linux-androideabi-gcc
 before_install:
 - export PATH=$PATH:$HOME/.local/bin
 - export ANDROID_NDK_VERSION=r10e
@@ -18,7 +17,6 @@ before_install:
 - export PATH=$PLATFORM_PREFIX/bin:$PATH
 script:
 - ./autogen.sh --with-jemalloc-prefix=je_ --with-malloc-conf=purge:decay --host=arm-linux-androideabi
-- cat config.log
 - make
 - cd lib
 - ls -alrt
