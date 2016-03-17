@@ -16,6 +16,7 @@ before_install:
 - export CC=$ANDROID_NDK_HOME/toolchains/arm-linux-androideabi-4.9/prebuilt/linux-`uname -m`/bin/arm-linux-androideabi-gcc
 - export CROSS_COMPILER=$ANDROID_NDK_HOME/toolchains/arm-linux-androideabi-4.9/prebuilt/linux-`uname -m`/bin/
 - export CROSS_COMPILE=arm-linux-androideabi
+- export CC_FOR_TARGET=arm-linux-androideabi-gcc
 script:
 - ./autogen.sh --with-jemalloc-prefix=je_ --with-malloc-conf=purge:decay --host=arm-linux-androideabi
 - cat config.log
