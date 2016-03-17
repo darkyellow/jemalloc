@@ -7,8 +7,8 @@ before_install:
 - export ANDROID_TOOLCHAIN=arm-linux-androideabi-4.9
 - export NDK_PLATFORM=android-9
 - echo $ANDROID_NDK_VERSION
-- if [ `uname -m` = x86_64 ]; then wget http://dl.google.com/android/ndk/android-ndk-$ANDROID_NDK_VERSION-linux-x86_64.zip -O ndk.bin; else wget http://dl.google.com/android/ndk/android-ndk-$ANDROID_NDK_VERSION-linux-x86.zip -O ndk.zip; fi
-- unzip ./ndk.bin
+- wget http://dl.google.com/android/repository/android-ndk-$ANDROID_NDK_VERSION-linux-x86_64.zip -O ndk.zip
+- unzip ./ndk.zip
 - export ANDROID_NDK_HOME=`pwd`/android-ndk-$ANDROID_NDK_VERSION
 - export PLATFORM_PREFIX=./android-ext/
 - mkdir $PLATFORM_PREFIX
