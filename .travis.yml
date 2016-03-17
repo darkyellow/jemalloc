@@ -6,12 +6,15 @@ before_install:
 - export PATH=$PATH:$HOME/.local/bin
 - export ANDROID_NDK_VERSION=r10e
 - export ANDROID_TOOLCHAIN=arm-linux-androideabi-4.9
+- NDK_PLATFORM=android-9
 - echo $ANDROID_NDK_VERSION
 - if [ `uname -m` = x86_64 ]; then wget http://dl.google.com/android/ndk/android-ndk-$ANDROID_NDK_VERSION-linux-x86_64.bin -O ndk.bin; else wget http://dl.google.com/android/ndk/android-ndk-$ANDROID_NDK_VERSION-linux-x86.bin -O ndk.bin; fi
 - chmod a+x ndk.bin
 - ./ndk.bin >extract.txt
 - export ANDROID_NDK_HOME=`pwd`/android-ndk-$ANDROID_NDK_VERSION
-- $ANDROID_NDK_HOME/build/tools/make-standalone-toolchain.sh --toolchain=$ANDROID_TOOLCHAIN
+- export PLATFORM_PREFIX=./android-ext/
+- mkdir $PLATFORM_PREFIX
+- $ANDROID_NDK_HOME/build/tools/make-standalone-toolchain.sh --toolchain=$ANDROID_TOOLCHAIN --platform=$NDK_PLATFORM --install-dir=$PLATFORM_PREFIX
 script:
 - ./autogen.sh --with-jemalloc-prefix=je_ --with-malloc-conf=purge:decay --host=arm-linux-androideabi
 - cat config.log
