@@ -1,4 +1,3 @@
-sudo: true
 env:
 language: c
 compiler: arm-linux-androideabi-cpp
